@@ -1,0 +1,25 @@
+{
+    "name": "neilime/zf2-tree-layout-stack",
+    "type": "library",
+    "description": "TreeLayoutStack is a module for ZF2 allowing the creation of tree layout",
+    "keywords": ["templating","layout","zf2"],
+    "homepage": "",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Neilime",
+            "homepage": "https://github.com/neilime",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "zendframework/zendframework": "2.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "TreeLayoutStack": "src"
+        },
+        "classmap" : ["Module.php"]
+    }
+}
