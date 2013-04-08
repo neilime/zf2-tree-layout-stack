@@ -15,14 +15,6 @@ class TemplatingServiceTest extends \PHPUnit_Framework_TestCase{
 		$this->assertInstanceOf('\TreeLayoutStack\TemplatingConfiguration',$this->templatingService->getConfiguration());
 	}
 
-	public function testGetSharedManager(){
-		$this->assertInstanceOf('\Zend\EventManager\SharedEventManagerInterface',$this->templatingService->getSharedManager());
-	}
-
-	public function testUnsetSharedManager(){
-		$this->assertInstanceOf('\TreeLayoutStack\TemplatingService',$this->templatingService->unsetSharedManager());
-	}
-
 	public function testBuildLayoutTemplate(){
 		$oEvent = new \Zend\Mvc\MvcEvent(\Zend\Mvc\MvcEvent::EVENT_RENDER);
 		$oViewModel = new \Zend\View\Model\ViewModel();

@@ -6,8 +6,13 @@ class Module implements \Zend\ModuleManager\Feature\AutoloaderProviderInterface{
 	 * @param \Zend\EventManager\EventInterface $oEvent
 	 */
 	public function onBootstrap(\Zend\EventManager\EventInterface $oEvent){
-		//Initialize templating service
-		$oEvent->getApplication()->getServiceManager()->get('TemplatingService');
+		$oServiceManager = $oEvent->getApplication()->getServiceManager();
+
+		//Attach templating service to render event
+		if($oServiceManager->has('ViewRenderer') && $oServiceManager->get('ViewRenderer') instanceof \Zend\View\Renderer\PhpRenderer)$oEventManager->attach(
+			\Zend\Mvc\MvcEvent::EVENT_RENDER,
+			array($oServiceManager->get('TemplatingService'), 'onRender')
+		);
 	}
 
 	/**
