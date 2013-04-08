@@ -140,10 +140,10 @@ class TemplatingService implements \Zend\EventManager\SharedEventManagerAwareInt
 			//Set layout template and add its children
 			$sTemplate = $oTemplate->getConfiguration()->getTemplate();
 			if(is_callable($sTemplate))$sTemplate = $sTemplate($this->getCurrentEvent());
-			$this->setChildrenToView(
+			$oEvent->setViewModel($this->setChildrenToView(
 				$oEvent->getViewModel()->setTemplate($sTemplate),
 				$oTemplate->getChildren()
-			);
+			));
 		}
 		catch(\Exception $oException){
 			throw new \RuntimeException('Error occured during building layout template process : '.$oException->getMessage(),$oException->getCode(),$oException);

@@ -3,7 +3,7 @@ namespace TreeLayoutStackTest;
 class TemplatingConfigurationTest extends \PHPUnit_Framework_TestCase{
 
 	/**
-	 * @var \BoilerAppDisplay\Service\TemplatingConfiguration
+	 * @var \TreeLayoutStack\TemplatingConfiguration
 	 */
 	protected $templateConfiguration;
 
@@ -12,7 +12,7 @@ class TemplatingConfigurationTest extends \PHPUnit_Framework_TestCase{
 	}
 
 	public function testGetTemplateMapForModule(){
-		$this->assertInstanceOf('\BoilerAppDisplay\Service\Template\Template',$this->templateConfiguration->getTemplateMapForModule());
+		$this->assertInstanceOf('\TreeLayoutStack\Template\Template',$this->templateConfiguration->getTemplateMapForModule());
 	}
 
 	public function testHasTemplateMapForModule(){

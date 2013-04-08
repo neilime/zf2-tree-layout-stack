@@ -3,7 +3,7 @@ namespace TreeLayoutStackTest;
 class TemplatingServiceTest extends \PHPUnit_Framework_TestCase{
 
 	/**
-	 * @var \BoilerAppDisplay\Service\TemplatingService
+	 * @var \TreeLayoutStack\TemplatingService
 	 */
 	protected $templatingService;
 
@@ -12,7 +12,7 @@ class TemplatingServiceTest extends \PHPUnit_Framework_TestCase{
 	}
 
 	public function testGetConfiguration(){
-		$this->assertInstanceOf('\BoilerAppDisplay\Service\TemplatingConfiguration',$this->templatingService->getConfiguration());
+		$this->assertInstanceOf('\TreeLayoutStack\TemplatingConfiguration',$this->templatingService->getConfiguration());
 	}
 
 	public function testGetSharedManager(){
@@ -20,14 +20,30 @@ class TemplatingServiceTest extends \PHPUnit_Framework_TestCase{
 	}
 
 	public function testUnsetSharedManager(){
-		$this->assertInstanceOf('\BoilerAppDisplay\Service\TemplatingService',$this->templatingService->unsetSharedManager());
+		$this->assertInstanceOf('\TreeLayoutStack\TemplatingService',$this->templatingService->unsetSharedManager());
 	}
 
 	public function testBuildLayoutTemplate(){
 		$oEvent = new \Zend\Mvc\MvcEvent(\Zend\Mvc\MvcEvent::EVENT_RENDER);
-		$oEvent->setRequest(new \Zend\Http\Request());
+		$oViewModel = new \Zend\View\Model\ViewModel();
+		\TreeLayoutStackTest\Bootstrap::getServiceManager()->get('viewhelpermanager')->get('view_model')->setRoot($oViewModel);
+
+		//Test return
+		$this->assertInstanceOf('\TreeLayoutStack\TemplatingService',$this->templatingService->buildLayoutTemplate($oEvent
+			->setRequest(new \Zend\Http\Request())
+			->setViewModel($oViewModel)
+		));
+
+		//Test view model
+		$this->assertInstanceOf('Zend\View\Model\ViewModel',$oEvent->getViewModel());
+
+		//Test rendering
 		$oRenderer = new \Zend\View\Renderer\PhpRenderer();
-		$oEvent->setViewModel(new \Zend\View\Model\ViewModel());
-		$this->assertInstanceOf('\BoilerAppDisplay\Service\TemplatingService',$this->templatingService->buildLayoutTemplate($oEvent));
+		$oRenderer
+			->setResolver(\TreeLayoutStackTest\Bootstrap::getServiceManager()->get('ViewResolver'))
+			->setHelperPluginManager(\TreeLayoutStackTest\Bootstrap::getServiceManager()->get('viewhelpermanager'));
+
+		file_put_contents(__DIR__.'/../_files/expected/rendering.phtml', $oRenderer->render($oEvent->getViewModel()));
+		$this->assertEquals(file_get_contents(__DIR__.'/../_files/expected/rendering.phtml'),$oRenderer->render($oEvent->getViewModel()));
 	}
 }

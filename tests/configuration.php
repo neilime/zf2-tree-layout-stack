@@ -28,15 +28,10 @@ return array(
 			'default' => array(
 				'template' => 'layout/layout',
 				'children' => array(
-					'specialLayout' => array(
-						'template' => 'layout/default',
-						'children' => array(
-							'header' => function(){
-								return 'header/logged';
-							},
-							'footer' => 'footer/footer'
-						)
-					)
+					'header' => function(){
+						return 'header/logged';
+					},
+					'footer' => 'footer/footer'
 				)
 			)
 		)

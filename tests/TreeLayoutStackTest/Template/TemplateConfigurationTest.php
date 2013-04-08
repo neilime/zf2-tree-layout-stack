@@ -3,7 +3,7 @@ namespace TreeLayoutStackTest\Template;
 class TemplateConfigurationTest extends \PHPUnit_Framework_TestCase{
 
 	/**
-	 * @var \BoilerAppDisplay\Service\Template\TemplateConfiguration
+	 * @var \TreeLayoutStack\Template\TemplateConfiguration
 	 */
 	protected $templateConfiguration;
 
@@ -19,8 +19,7 @@ class TemplateConfigurationTest extends \PHPUnit_Framework_TestCase{
 		$aChildren = $this->templateConfiguration->getChildren();
 
 		$this->assertTrue(is_array($aChildren));
-		$this->assertArrayHasKey('specialLayout',$aChildren);
-		$this->assertArrayHasKey('template',$aChildren['specialLayout']);
-		$this->assertArrayHasKey('children',$aChildren['specialLayout']);
+		$this->assertArrayHasKey('header',$aChildren);
+		$this->assertArrayHasKey('footer',$aChildren);
 	}
 }
