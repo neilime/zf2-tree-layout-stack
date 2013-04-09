@@ -12,11 +12,11 @@ class TemplatingConfigurationTest extends \PHPUnit_Framework_TestCase{
 	}
 
 	public function testGetTemplateMapForModule(){
-		$this->assertInstanceOf('\TreeLayoutStack\Template\Template',$this->templateConfiguration->getTemplateMapForModule());
+		$this->assertInstanceOf('\TreeLayoutStack\Template\Template',$this->templateConfiguration->getLayoutTreeForModule());
 	}
 
 	public function testHasTemplateMapForModule(){
-		$this->assertTrue($this->templateConfiguration->hasTemplateMapForModule());
-		$this->assertFalse($this->templateConfiguration->hasTemplateMapForModule('UnknownModule'));
+		$this->assertTrue($this->templateConfiguration->hasLayoutTreeForModule());
+		$this->assertFalse($this->templateConfiguration->hasLayoutTreeForModule('UnknownModule'));
 	}
 }

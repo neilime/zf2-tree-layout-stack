@@ -1,19 +1,19 @@
 <?php
 namespace TreeLayoutStack;
 class TemplatingConfiguration extends \Zend\Stdlib\AbstractOptions{
-	const DEFAULT_TEMPLATE_MAP = 'default';
+	const DEFAULT_LAYOUT_TREE = 'default';
 
 	/**
 	 * @var array
 	 */
-	protected $templateMap;
+	protected $layoutTree;
 
 	/**
-	 * @param array $aTemplateMap
+	 * @param array $aLayoutTree
 	 * @return \TreeLayoutStack\TemplatingConfiguration
 	 */
-	public function setTemplateMap(array $aTemplateMap){
-		foreach($aTemplateMap as $sModule => $oTemplateConfiguration){
+	public function setLayoutTree(array $aLayoutTree){
+		foreach($aLayoutTree as $sModule => $oTemplateConfiguration){
 			$this->addTemplate($sModule, $oTemplateConfiguration);
 		}
 		return $this;
@@ -24,10 +24,10 @@ class TemplatingConfiguration extends \Zend\Stdlib\AbstractOptions{
 	 * @throws \InvalidArgumentException
 	 * @return \TreeLayoutStack\Template\Template
 	 */
-	public function getTemplateMapForModule($sModule = self::DEFAULT_TEMPLATE_MAP){
+	public function getLayoutTreeForModule($sModule = self::DEFAULT_LAYOUT_TREE){
 		if(!is_string($sModule))throw new \InvalidArgumentException('Module expects string, '.gettype($sModule).' given');
-		if(!$this->hasTemplateMapForModule($sModule))throw new \InvalidArgumentException('Template Map is undefined for "'.$sModule.'"');
-		return $this->templateMap[$sModule];
+		if(!$this->hasLayoutTreeForModule($sModule))throw new \InvalidArgumentException('Template Map is undefined for "'.$sModule.'"');
+		return $this->layoutTree[$sModule];
 	}
 
 	/**
@@ -35,9 +35,9 @@ class TemplatingConfiguration extends \Zend\Stdlib\AbstractOptions{
 	 * @throws \InvalidArgumentException
 	 * @return boolean
 	 */
-	public function hasTemplateMapForModule($sModule = self::DEFAULT_TEMPLATE_MAP){
+	public function hasLayoutTreeForModule($sModule = self::DEFAULT_LAYOUT_TREE){
 		if(!is_string($sModule))throw new \InvalidArgumentException('Module expects string, '.gettype($sModule).' given');
-		return isset($this->templateMap[$sModule]);
+		return isset($this->layoutTree[$sModule]);
 	}
 
 	/**
@@ -59,7 +59,7 @@ class TemplatingConfiguration extends \Zend\Stdlib\AbstractOptions{
 			__METHOD__,
 			(is_object($oTemplateConfiguration)?get_class($oTemplateConfiguration):gettype($oTemplateConfiguration))
 		));
-		$this->templateMap[$sModule] = new \TreeLayoutStack\Template\Template($oTemplateConfiguration);
+		$this->layoutTree[$sModule] = new \TreeLayoutStack\Template\Template($oTemplateConfiguration);
 		return $this;
 	}
 }

@@ -8,7 +8,7 @@ class TemplateTest extends \PHPUnit_Framework_TestCase{
 	protected $template;
 
 	public function setUp(){
-		$this->template = \TreeLayoutStackTest\Bootstrap::getServiceManager()->get('TemplatingService')->getConfiguration()->getTemplateMapForModule();
+		$this->template = \TreeLayoutStackTest\Bootstrap::getServiceManager()->get('TemplatingService')->getConfiguration()->getLayoutTreeForModule();
 	}
 
 	public function testGetConfiguration(){

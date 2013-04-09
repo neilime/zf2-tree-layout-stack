@@ -10,9 +10,6 @@ return array(
 			)
 		)
 	),
-	'view_manager' => array(
-		'doctype' => 'HTML5'
-	),
 	'translator' => array(
 		'locale' => 'fr_FR',
 		'translation_file_patterns' => array(
@@ -23,8 +20,8 @@ return array(
 			)
 		)
 	),
-	'templating' => array(
-		'template_map' => array(
+	'tree_layout_stack' => array(
+		'layout_tree' => array(
 			'default' => array(
 				'template' => 'layout/layout',
 				'children' => array(
@@ -37,9 +34,9 @@ return array(
 		)
 	),
 	'view_manager' => array(
+		'doctype' => 'HTML5',
 		'template_map' => array(
 			'layout/layout' => __DIR__ . '/_files/view/layout/layout.phtml',
-			'layout/default' => __DIR__ . '/_files/view/layout/default.phtml',
 			'header/logged' => __DIR__ . '/_files/view/application/header/logged.phtml',
 			'footer/footer' => __DIR__ . '/_files/view/application/footer/footer.phtml'
 		)

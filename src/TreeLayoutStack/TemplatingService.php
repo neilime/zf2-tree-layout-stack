@@ -95,13 +95,13 @@ class TemplatingService{
 
 		/* @var $oRouter \Zend\Mvc\Router\RouteMatch */
 		if(($oRouter = $this->getCurrentEvent()->getRouteMatch()) instanceof \Zend\Mvc\Router\RouteMatch)$sModule = current(explode('\\',$oRouter->getParam('controller')));
-		if(empty($sModule))$sModule = \TreeLayoutStack\TemplatingConfiguration::DEFAULT_TEMPLATE_MAP;
+		if(empty($sModule))$sModule = \TreeLayoutStack\TemplatingConfiguration::DEFAULT_LAYOUT_TREE;
 
 		try{
 			//Retrieve template for module
-			$oTemplate = $this->getConfiguration()->hasTemplateMapForModule($sModule)
-				?$this->getConfiguration()->getTemplateMapForModule($sModule)
-				:$this->getConfiguration()->getTemplateMapForModule(\TreeLayoutStack\TemplatingConfiguration::DEFAULT_TEMPLATE_MAP);
+			$oTemplate = $this->getConfiguration()->hasLayoutTreeForModule($sModule)
+				?$this->getConfiguration()->getLayoutTreeForModule($sModule)
+				:$this->getConfiguration()->getLayoutTreeForModule(\TreeLayoutStack\TemplatingConfiguration::DEFAULT_LAYOUT_TREE);
 
 			//Set layout template and add its children
 			$sTemplate = $oTemplate->getConfiguration()->getTemplate();
