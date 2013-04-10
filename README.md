@@ -70,7 +70,7 @@ This example shows how to define a simple tree layout stack with header and foot
 	return array(
 		//...
 		'tree_layout_stack' => array(
-	    	'tree_map' => array(
+	    	'layout_tree' => array(
 				'default' => array(
 					'template' => 'layout/layout',
 					'children' => array(
@@ -120,10 +120,10 @@ This example shows how to define a simple tree layout stack with header and foot
 
  * array `layout_tree`: Define the layout tree, you can define differents tree layout stack, depends on module name, the `default` configuration is used if no template is defined for current module 
  
-2. Module tree map (`tree_map` entry or `template`) :
+2. Module layout tree map (`layout_tree` entry) :
 
  * string|array|callable template : define the template name
- * array children : (optionnal) define children of the template, the configuration is the same as the `tree_map` entry or `template`
+ * array children : (optionnal) define children of the template, the configuration is the same as the `layout_tree` entry or `template`
  
  
 ## Complexe exemple
@@ -135,7 +135,7 @@ This example shows all the configuration options available, it assume that `temp
 	return array(
 		//...
 		'tree_layout_stack' => array(
-	    	'tree_map' => array(
+	    	'layout_tree' => array(
 				'default' => array(
 					'template' => 'layout/layout',
 					'children' => array(
