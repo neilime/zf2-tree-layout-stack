@@ -17,7 +17,7 @@ class Module implements \Zend\ModuleManager\Feature\AutoloaderProviderInterface{
 			&& $oServiceManager->get('ViewRenderer') instanceof \Zend\View\Renderer\PhpRenderer
 		)$oEventManager->attach(
 			\Zend\Mvc\MvcEvent::EVENT_RENDER,
-			array($oServiceManager->get('TemplatingService'), 'onRender')
+			array($oServiceManager->get('TemplatingService'), 'buildLayoutTemplate')
 		);
 	}
 
