@@ -9,7 +9,13 @@ class Module implements \Zend\ModuleManager\Feature\AutoloaderProviderInterface{
 		$oServiceManager = $oEvent->getApplication()->getServiceManager();
 
 		//Attach templating service to render event
-		if($oServiceManager->has('ViewRenderer') && $oServiceManager->get('ViewRenderer') instanceof \Zend\View\Renderer\PhpRenderer)$oEventManager->attach(
+		if(
+			is_callable(array($oEvent,'getApplication'))
+			&& ($oApplication = call_user_func(array($oEvent,'getApplication'))) instanceof \Zend\Mvc\Application
+			&& ($oEventManager = $oApplication->getEventManager()) instanceof \Zend\EventManager\EventManagerInterface
+			&& $oServiceManager->has('ViewRenderer')
+			&& $oServiceManager->get('ViewRenderer') instanceof \Zend\View\Renderer\PhpRenderer
+		)$oEventManager->attach(
 			\Zend\Mvc\MvcEvent::EVENT_RENDER,
 			array($oServiceManager->get('TemplatingService'), 'onRender')
 		);
@@ -22,7 +28,7 @@ class Module implements \Zend\ModuleManager\Feature\AutoloaderProviderInterface{
 	public function getAutoloaderConfig(){
         return array(
             'Zend\Loader\ClassMapAutoloader' => array(
-                __DIR__ . '/autoload_classmap.php'
+                __DIR__.DIRECTORY_SEPARATOR.'autoload_classmap.php'
             )
         );
     }
@@ -31,6 +37,6 @@ class Module implements \Zend\ModuleManager\Feature\AutoloaderProviderInterface{
      * @return array
      */
     public function getConfig(){
-        return include __DIR__ . '/config/module.config.php';
+        return include __DIR__.DIRECTORY_SEPARATOR.'config/module.config.php';
     }
 }
