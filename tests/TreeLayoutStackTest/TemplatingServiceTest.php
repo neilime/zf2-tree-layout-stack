@@ -8,11 +8,33 @@ class TemplatingServiceTest extends \PHPUnit_Framework_TestCase{
 	protected $templatingService;
 
 	public function setUp(){
-		$this->templatingService = \TreeLayoutStackTest\Bootstrap::getServiceManager()->get('TemplatingService');
+		$oTemplatingServiceFactory = new \TreeLayoutStack\Factory\TemplatingServiceFactory();
+		$this->templatingService = $oTemplatingServiceFactory->createService(\TreeLayoutStackTest\Bootstrap::getServiceManager());
 	}
 
 	public function testGetConfiguration(){
 		$this->assertInstanceOf('\TreeLayoutStack\TemplatingConfiguration',$this->templatingService->getConfiguration());
+	}
+
+	/**
+	 * @expectedException LogicException
+	 */
+	public function testGetConfigurationUnset(){
+		$oReflectionClass = new \ReflectionClass('\TreeLayoutStack\TemplatingService');
+		$oConfiguration = $oReflectionClass->getProperty('configuration');
+		$oConfiguration->setAccessible(true);
+		$oConfiguration->setValue($this->templatingService,null);
+		$this->templatingService->getConfiguration();
+	}
+
+	/**
+	 * @expectedException LogicException
+	 */
+	public function testGetCurrentEventUnset(){
+		$oReflectionClass = new \ReflectionClass('\TreeLayoutStack\TemplatingService');
+		$oGetCurrentEvent = $oReflectionClass->getMethod('getCurrentEvent');
+		$oGetCurrentEvent->setAccessible(true);
+		$oGetCurrentEvent->invoke($this->templatingService);
 	}
 
 	public function testBuildLayoutTemplate(){
@@ -35,7 +57,21 @@ class TemplatingServiceTest extends \PHPUnit_Framework_TestCase{
 			->setResolver(\TreeLayoutStackTest\Bootstrap::getServiceManager()->get('ViewResolver'))
 			->setHelperPluginManager(\TreeLayoutStackTest\Bootstrap::getServiceManager()->get('viewhelpermanager'));
 
-		file_put_contents(__DIR__.'/../_files/expected/rendering.phtml', $oRenderer->render($oEvent->getViewModel()));
 		$this->assertEquals(file_get_contents(__DIR__.'/../_files/expected/rendering.phtml'),$oRenderer->render($oEvent->getViewModel()));
+	}
+
+	/**
+	 * @expectedException RuntimeException
+	 */
+	public function testBuildLayoutTemplateWithWrongTemplate(){
+		$oEvent = new \Zend\Mvc\MvcEvent(\Zend\Mvc\MvcEvent::EVENT_RENDER);
+		$oViewModel = new \Zend\View\Model\ViewModel();
+		\TreeLayoutStackTest\Bootstrap::getServiceManager()->get('viewhelpermanager')->get('view_model')->setRoot($oViewModel);
+
+		$this->templatingService->buildLayoutTemplate($oEvent
+			->setRequest(new \Zend\Http\Request())
+			->setRouteMatch(new \Zend\Mvc\Router\RouteMatch(array('controller' => 'Wrong\Controller')))
+			->setViewModel($oViewModel)
+		);
 	}
 }

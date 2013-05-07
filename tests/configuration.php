@@ -30,7 +30,11 @@ return array(
 					},
 					'footer' => 'footer/footer'
 				)
-			)
+			),
+			'test' => 'layout/layout',
+			'Wrong' => function(){
+				throw new \Exception('Exception in template');
+			}
 		)
 	),
 	'view_manager' => array(

@@ -3,7 +3,7 @@ TreeLayoutStack, v1.0
 
 [![Build Status](https://travis-ci.org/neilime/zf2-tree-layout-stack.png?branch=master)](https://travis-ci.org/neilime/zf2-tree-layout-stack)
 
-Created by Neilime
+_100% Code Coverage_
 
 Introduction
 ------------

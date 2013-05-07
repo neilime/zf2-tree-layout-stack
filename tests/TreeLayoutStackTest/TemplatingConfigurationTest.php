@@ -5,18 +5,28 @@ class TemplatingConfigurationTest extends \PHPUnit_Framework_TestCase{
 	/**
 	 * @var \TreeLayoutStack\TemplatingConfiguration
 	 */
-	protected $templateConfiguration;
+	protected $templatingConfiguration;
 
 	public function setUp(){
-		$this->templateConfiguration = \TreeLayoutStackTest\Bootstrap::getServiceManager()->get('TemplatingService')->getConfiguration();
+		$this->templatingConfiguration = \TreeLayoutStackTest\Bootstrap::getServiceManager()->get('TemplatingService')->getConfiguration();
 	}
 
 	public function testGetTemplateMapForModule(){
-		$this->assertInstanceOf('\TreeLayoutStack\Template\Template',$this->templateConfiguration->getLayoutTreeForModule());
+		$this->assertInstanceOf('\TreeLayoutStack\Template\Template',$this->templatingConfiguration->getLayoutTreeForModule());
 	}
 
 	public function testHasTemplateMapForModule(){
-		$this->assertTrue($this->templateConfiguration->hasLayoutTreeForModule());
-		$this->assertFalse($this->templateConfiguration->hasLayoutTreeForModule('UnknownModule'));
+		$this->assertTrue($this->templatingConfiguration->hasLayoutTreeForModule());
+		$this->assertFalse($this->templatingConfiguration->hasLayoutTreeForModule('UnknownModule'));
+	}
+
+	/**
+	 * @expectedException LogicException
+	 */
+	public function testAddTemplateWithWrongConfiguration(){
+		$oReflectionClass = new \ReflectionClass('\TreeLayoutStack\TemplatingConfiguration');
+		$oAddTemplate = $oReflectionClass->getMethod('addTemplate');
+		$oAddTemplate->setAccessible(true);
+		$oAddTemplate->invoke($this->templatingConfiguration,'wrong',new \stdClass());
 	}
 }

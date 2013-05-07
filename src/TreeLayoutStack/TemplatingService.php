@@ -93,7 +93,6 @@ class TemplatingService{
 
 		//Define module Name
 
-		/* @var $oRouter \Zend\Mvc\Router\RouteMatch */
 		if(($oRouter = $this->getCurrentEvent()->getRouteMatch()) instanceof \Zend\Mvc\Router\RouteMatch)$sModule = current(explode('\\',$oRouter->getParam('controller')));
 		if(empty($sModule))$sModule = \TreeLayoutStack\TemplatingConfiguration::DEFAULT_LAYOUT_TREE;
 
