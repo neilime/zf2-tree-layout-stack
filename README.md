@@ -2,15 +2,14 @@ TreeLayoutStack, v1.0
 =======
 
 [![Build Status](https://travis-ci.org/neilime/zf2-tree-layout-stack.png?branch=master)](https://travis-ci.org/neilime/zf2-tree-layout-stack)
+![Code coverage](https://raw.github.com/zf2-boiler-app/app-test/master/ressources/100%25-code-coverage.png "100% code coverage")
 
-_100% Code Coverage_
+NOTE : If you want to contribute don't hesitate, I'll review any PR.
 
 Introduction
 ------------
 
 TreeLayoutStack is module for ZF2 allowing the creation of tree layout 
-
-P.S. If you want to contribute don't hesitate, I'll review any PR.
 
 Requirements
 ------------
