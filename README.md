@@ -2,6 +2,8 @@ TreeLayoutStack, v1.0
 =======
 
 [![Build Status](https://travis-ci.org/neilime/zf2-tree-layout-stack.png?branch=master)](https://travis-ci.org/neilime/zf2-tree-layout-stack)
+[![Latest Stable Version](https://poser.pugx.org/neilime/zf2-tree-layout-stack/v/stable.png)](https://packagist.org/packages/neilime/zf2-tree-layout-stack)
+[![Total Downloads](https://poser.pugx.org/neilime/zf2-tree-layout-stack/downloads.png)](https://packagist.org/packages/neilime/zf2-tree-layout-stack)
 ![Code coverage](https://raw.github.com/zf2-boiler-app/app-test/master/ressources/100%25-code-coverage.png "100% code coverage")
 
 NOTE : If you want to contribute don't hesitate, I'll review any PR.
@@ -155,6 +157,3 @@ This example shows all the configuration options available, it assume that `temp
 	    //...
 	);
 	```
-
-
-

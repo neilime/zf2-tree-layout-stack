@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1369748084">
-  <project timestamp="1369748084">
+<coverage generated="1376928685">
+  <project timestamp="1376928685">
     <package name="TreeLayoutStack">
       <file name="C:\Users\emilien\workspace-zf2\zf2-tree-layout-stack/Module.php">
         <class name="Module" namespace="TreeLayoutStack">
