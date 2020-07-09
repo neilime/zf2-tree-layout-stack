@@ -1,5 +1,7 @@
-TreeLayoutStack, v1.0
+TreeLayoutStack
 =======
+
+__⚠️ This module is for Zend Framework 2, it is deprecated ⚠️__ 
 
 [![Build Status](https://travis-ci.org/neilime/zf2-tree-layout-stack.png?branch=master)](https://travis-ci.org/neilime/zf2-tree-layout-stack)
 [![Latest Stable Version](https://poser.pugx.org/neilime/zf2-tree-layout-stack/v/stable.png)](https://packagist.org/packages/neilime/zf2-tree-layout-stack)
